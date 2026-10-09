@@ -9,6 +9,7 @@ export const BUILDING_CATALOG: Record<BuildingType, BuildingDefinition> = {
   habitat: {
     type: 'habitat',
     name: 'Crew Habitat Module',
+    shortName: 'Habitat',
     category: 'life_support',
     cost: 350,
     size: { width: 2, height: 2 },
@@ -31,6 +32,7 @@ export const BUILDING_CATALOG: Record<BuildingType, BuildingDefinition> = {
   solar_array: {
     type: 'solar_array',
     name: 'Photovoltaic Solar Array',
+    shortName: 'Solar',
     category: 'energy',
     cost: 150,
     size: { width: 2, height: 1 },
@@ -46,6 +48,7 @@ export const BUILDING_CATALOG: Record<BuildingType, BuildingDefinition> = {
   battery_bank: {
     type: 'battery_bank',
     name: 'Regolith-Shielded Battery Bank',
+    shortName: 'Battery',
     category: 'energy',
     cost: 180,
     size: { width: 1, height: 1 },
@@ -61,6 +64,7 @@ export const BUILDING_CATALOG: Record<BuildingType, BuildingDefinition> = {
   greenhouse: {
     type: 'greenhouse',
     name: 'Hydroponic Greenhouse Dome',
+    shortName: 'Greenhouse',
     category: 'life_support',
     cost: 280,
     size: { width: 2, height: 2 },
@@ -80,6 +84,7 @@ export const BUILDING_CATALOG: Record<BuildingType, BuildingDefinition> = {
   water_recycler: {
     type: 'water_recycler',
     name: 'Vapor-Compression Water Recycler',
+    shortName: 'Water',
     category: 'life_support',
     cost: 220,
     size: { width: 1, height: 1 },
@@ -96,6 +101,7 @@ export const BUILDING_CATALOG: Record<BuildingType, BuildingDefinition> = {
   radiation_shielding: {
     type: 'radiation_shielding',
     name: 'Sintered Regolith Shield Bulwark',
+    shortName: 'Shield',
     category: 'protection',
     cost: 200,
     size: { width: 2, height: 1 },
@@ -111,6 +117,7 @@ export const BUILDING_CATALOG: Record<BuildingType, BuildingDefinition> = {
   research_rover: {
     type: 'research_rover',
     name: 'Pressurized Science Rover & Bay',
+    shortName: 'Rover',
     category: 'research',
     cost: 240,
     size: { width: 1, height: 1 },

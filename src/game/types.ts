@@ -51,6 +51,7 @@ export interface BuildingSize {
 export interface BuildingDefinition {
   type: BuildingType;
   name: string;
+  shortName?: string;
   category: 'life_support' | 'energy' | 'protection' | 'research';
   cost: number;
   size: BuildingSize;

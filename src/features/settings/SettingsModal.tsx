@@ -3,7 +3,7 @@
  * Clean white theme, sound, motion, and cache controls.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Eye,
   Grid,
@@ -23,14 +23,19 @@ export const SettingsModal: React.FC = () => {
   const updateSettings = useGameStore((s) => s.updateSettings);
   const showToast = useGameStore((s) => s.showToast);
 
+  const [confirmClear, setConfirmClear] = useState(false);
+
   if (!isSettingsOpen) return null;
 
   const handleClearSave = () => {
-    if (window.confirm('Reset saved mission progress? Active game will be cleared.')) {
-      clearSavedMission();
-      showToast('Saved data cleared', 'info');
-      useGameStore.setState({ hasSavedMission: false });
+    if (!confirmClear) {
+      setConfirmClear(true);
+      return;
     }
+    clearSavedMission();
+    showToast('Saved data cleared', 'info');
+    useGameStore.setState({ hasSavedMission: false });
+    setConfirmClear(false);
   };
 
   return (
@@ -127,10 +132,14 @@ export const SettingsModal: React.FC = () => {
           <div className="pt-2 border-t border-slate-100">
             <button
               onClick={handleClearSave}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 text-xs w-full justify-center transition-colors cursor-pointer"
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs w-full justify-center transition-colors cursor-pointer ${
+                confirmClear
+                  ? 'bg-rose-600 hover:bg-rose-700 text-white border-rose-600 font-bold'
+                  : 'bg-rose-50 hover:bg-rose-100 border-rose-200 text-rose-700'
+              }`}
             >
               <Trash2 className="w-3.5 h-3.5" />
-              <span>Clear Saved Game</span>
+              <span>{confirmClear ? 'Click again to confirm reset' : 'Clear Saved Game'}</span>
             </button>
           </div>
         </div>

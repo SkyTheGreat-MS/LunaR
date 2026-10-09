@@ -33,11 +33,12 @@ export const BuildingPalette: React.FC = () => {
         </div>
       </div>
 
-      {/* Spacious, uncramped module cards with just Name & Price */}
-      <div className="flex items-stretch gap-2 overflow-x-auto pb-1 pt-0.5 px-0.5 scrollbar-thin">
+      {/* Spacious, uncramped module cards with small short names & prices */}
+      <div className="flex items-stretch gap-1.5 sm:gap-2 overflow-x-auto pb-1 pt-0.5 px-0.5 scrollbar-thin">
         {BUILDING_LIST.map((b) => {
           const isSelected = placementType === b.type;
           const canAfford = credits >= b.cost;
+          const displayName = b.shortName || b.name;
 
           return (
             <button
@@ -48,7 +49,7 @@ export const BuildingPalette: React.FC = () => {
                 }
               }}
               disabled={!canAfford}
-              className={`group flex-1 min-w-[95px] sm:min-w-[105px] text-left px-3 py-2 rounded-lg border transition-all duration-150 flex flex-col justify-between cursor-pointer select-none ${
+              className={`group flex-1 min-w-[70px] sm:min-w-[82px] text-left px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-lg border transition-all duration-150 flex flex-col justify-between cursor-pointer select-none ${
                 isSelected
                   ? 'bg-sky-50 border-sky-500 ring-2 ring-sky-300 shadow-xs'
                   : canAfford
@@ -57,10 +58,10 @@ export const BuildingPalette: React.FC = () => {
               }`}
               title={canAfford ? `Click to inspect details and place ${b.name}` : `Cannot afford ${b.name}`}
             >
-              <div className={`font-semibold text-xs leading-tight transition-colors line-clamp-1 ${
+              <div className={`font-semibold text-xs leading-tight transition-colors truncate ${
                 isSelected ? 'text-sky-900 font-bold' : 'text-slate-800 group-hover:text-sky-700'
               }`}>
-                {b.name}
+                {displayName}
               </div>
 
               <div className="flex items-center justify-between mt-1 pt-1 border-t border-slate-200/60">
@@ -70,7 +71,7 @@ export const BuildingPalette: React.FC = () => {
                   ${b.cost}
                 </span>
                 {isSelected && (
-                  <span className="text-[9px] font-bold text-sky-600 uppercase tracking-tight">
+                  <span className="text-[9px] font-bold text-sky-600 uppercase tracking-tight ml-1">
                     Active
                   </span>
                 )}
