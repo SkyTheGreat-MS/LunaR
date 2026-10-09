@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function() {
+        // Provide setter for window.fetch to allow browser extension interceptors to attach safely
+        try {
+          var _currentFetch = window.fetch;
+          Object.defineProperty(window, 'fetch', {
+            configurable: true,
+            enumerable: true,
+            get: function() {
+              return _currentFetch;
+            },
+            set: function(val) {
+              _currentFetch = val;
+            }
+          });
+        } catch (_) {}
+
+        // Suppress external browser extension errors from bubbling to app host
+        window.addEventListener('error', function(e) {
+          if (
+            (e.filename && e.filename.indexOf('chrome-extension://') !== -1) ||
+            (e.message && e.message.indexOf('Cannot set property fetch') !== -1)
+          ) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+            return true;
+          }
+        }, true);
+      })();
+    </script>
+    <title>Junior Astronaut Mission Trainer</title>
+    <meta name="description" content="A 2D isometric lunar-outpost simulator where players design and operate a Moon base, manage scarce resources, and master the science of space survival." />
+    <meta property="og:title" content="Junior Astronaut Mission Trainer" />
+    <meta property="og:description" content="A 2D isometric lunar-outpost simulator where players design and operate a Moon base, manage scarce resources, and master the science of space survival." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

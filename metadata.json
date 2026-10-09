@@ -1,0 +1,6 @@
+{
+  "name": "Junior Astronaut Mission Trainer",
+  "description": "A 2D isometric lunar-outpost simulator where players design and operate a Moon base, manage scarce resources, and master the science of space survival.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
